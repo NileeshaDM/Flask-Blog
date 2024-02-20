@@ -1,0 +1,32 @@
+<!doctype html>
+<html>
+    <head>
+      {% if title %}
+      <title>{{ title }} - Flaskblog</title>
+      {% else %}
+      <title>Welcome to Flaskblog</title>
+      {% endif %}
+    </head>
+    <body>
+        <div>Flaskblog: 
+            <a href="{{ url_for('index') }}">Home</a>
+            <!-- is_anonymous property is one of the attributes that Flask-Login adds to user objects through the UserMixin class -->
+            {% if current_user.is_anonymous %} 
+            <a href="{{ url_for('login') }}">Login</a>
+            {% else %}
+            <a href="{{ url_for('logout') }}">Logout</a>
+            {% endif %}
+        </div>
+        <hr>
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+        <ul>
+            {% for message in messages %}
+            <li>{{ message }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+        {% endwith %}
+        {% block content %}{% endblock %}
+    </body>
+</html>
