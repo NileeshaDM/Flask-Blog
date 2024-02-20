@@ -10,6 +10,7 @@
     <body>
         <div>Flaskblog: 
             <a href="{{ url_for('index') }}">Home</a>
+            <a href="{{ url_for('explore') }}">Explore</a>
             <!-- is_anonymous property is one of the attributes that Flask-Login adds to user objects through the UserMixin class -->
             {% if current_user.is_anonymous %} 
             <a href="{{ url_for('login') }}">Login</a>
