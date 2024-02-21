@@ -7,6 +7,7 @@ import logging
 from logging.handlers import SMTPHandler
 from logging.handlers import RotatingFileHandler
 from flask_mail import Mail
+from flask_moment import Moment
 import os
 
 app = Flask(__name__) #The __name__ variable passed to the Flask class is a Python predefined variable
@@ -18,6 +19,7 @@ login = LoginManager(app)
 login.login_view = 'login' # If a user who is not logged in tries to view a protected page, Flask-Login will automatically redirect the user to the login form, and only redirect back
 
 mail = Mail(app)
+moment = Moment(app)
 
 if not app.debug:
     if app.config['MAIL_SERVER']:
